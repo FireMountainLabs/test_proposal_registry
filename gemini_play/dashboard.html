@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Risk Assessment Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .left-panel {
+            flex: 1;
+            width: 50%;
+            padding: 30px;
+            border-right: 1px solid #e1e8ed;
+            background: #f8f9fa;
+        }
+
+        .right-panel {
+            flex: 1;
+            width: 50%;
+            padding: 30px;
+            background: white;
+        }
+
+        .panel-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .panel-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #3498db;
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .menu-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e1e8ed;
+        }
+
+        .menu-button {
+            padding: 8px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            background: white;
+            color: #2c3e50;
+            font-size: 0.85em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+
+        .menu-button:hover {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .menu-button:active {
+            transform: translateY(0);
+        }
+
+        .proposal-form {
+            background: white;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .form-section {
+            margin-bottom: 15px;
+        }
+
+        .form-section label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-section input,
+        .form-section textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            background: #fff;
+        }
+
+        .form-section input:focus,
+        .form-section textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-section textarea {
+            min-height: 45px;
+            resize: vertical;
+        }
+
+        .form-section input[required] {
+            border-left: 3px solid #e74c3c;
+        }
+
+
+        .assess-button {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .assess-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .assess-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .risk-item {
+            background: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .risk-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+
+        .risk-id {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .risk-title {
+            font-size: 1.1em;
+        }
+
+        .risk-content {
+            padding: 20px;
+        }
+
+        .risk-description {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .risk-explanation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            font-style: italic;
+            color: #34495e;
+        }
+
+        .controls-section {
+            margin-top: 15px;
+        }
+
+        .controls-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e1e8ed;
+            transition: background-color 0.2s ease;
+        }
+
+        .controls-title:hover {
+            background: #e9ecef;
+        }
+
+        .controls-toggle {
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+            color: #6c757d;
+        }
+
+        .controls-toggle.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .controls-list {
+            max-height: 300px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .controls-list.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .control-item {
+            background: #ecf0f1;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 40px;
+            font-style: italic;
+        }
+
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .success-message {
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .left-panel, .right-panel {
+                border-right: none;
+                border-bottom: 1px solid #e1e8ed;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ AI/ML Risk Assessment Dashboard</h1>
+            <p>Create, edit, and assess AI/ML proposals with instant risk analysis</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="panel-title">📝 Proposal Editor</div>
+                
+                <div class="menu-bar">
+                    <button id="loadFileButton" class="menu-button">
+                        📁 Load File
+                    </button>
+                    <button id="loadSampleButton" class="menu-button">
+                        📋 Load Sample
+                    </button>
+                    <button id="saveButton" class="menu-button">
+                        💾 Save
+                    </button>
+                    <button id="clearButton" class="menu-button">
+                        🗑️ Clear
+                    </button>
+                    <input type="file" id="fileInput" accept=".json" style="display: none;">
+                </div>
+                
+                <div id="proposalForm" class="proposal-form">
+                    <div class="form-section">
+                        <label for="cfpId">CFP ID:</label>
+                        <input type="text" id="cfpId" placeholder="e.g., CFP-001">
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="proposalTitle">Proposal Title:</label>
+                        <input type="text" id="proposalTitle" placeholder="Enter proposal title" required>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="description">Description:</label>
+                        <textarea id="description" placeholder="Describe your AI/ML proposal..." required></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="technicalApproach">Technical Approach:</label>
+                        <textarea id="technicalApproach" placeholder="Describe your technical approach..."></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="dataSources">Data Sources (one per line):</label>
+                        <textarea id="dataSources" placeholder="customer_data&#10;public_datasets&#10;third_party_apis"></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="deployment">Deployment:</label>
+                        <textarea id="deployment" placeholder="Describe deployment approach..."></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="dataGovernance">Data Governance:</label>
+                        <textarea id="dataGovernance" placeholder="Describe data governance measures..."></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="modelGovernance">Model Governance:</label>
+                        <textarea id="modelGovernance" placeholder="Describe model governance measures..."></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="securityMeasures">Security Measures:</label>
+                        <textarea id="securityMeasures" placeholder="Describe security measures..."></textarea>
+                    </div>
+                    
+                </div>
+                
+                <button id="assessButton" class="assess-button" disabled>
+                    🔍 Assess Risks
+                </button>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <div>Analyzing proposal and assessing risks...</div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="panel-title">⚠️ Risk Assessment Results</div>
+                
+                <div id="resultsContainer">
+                    <div class="no-results">
+                        Fill out the form and click "Assess Risks" to see results
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loadFileButton = document.getElementById('loadFileButton');
+        const fileInput = document.getElementById('fileInput');
+        const proposalForm = document.getElementById('proposalForm');
+        const assessButton = document.getElementById('assessButton');
+        const loading = document.getElementById('loading');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const saveButton = document.getElementById('saveButton');
+        const loadSampleButton = document.getElementById('loadSampleButton');
+        const clearButton = document.getElementById('clearButton');
+
+        let currentProposal = null;
+        let hasUnsavedChanges = false;
+
+        // File upload handling
+        loadFileButton.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileSelect);
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+
+        function handleFile(file) {
+            if (file.type !== 'application/json') {
+                showError('Please select a JSON file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const content = e.target.result;
+                    const jsonData = JSON.parse(content);
+                    loadProposalIntoForm(jsonData);
+                    showSuccess('Proposal loaded successfully!');
+                } catch (error) {
+                    showError('Invalid JSON file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function loadProposalIntoForm(proposal) {
+            currentProposal = proposal;
+            
+            // Populate form fields
+            document.getElementById('cfpId').value = proposal.cfp_id || '';
+            document.getElementById('proposalTitle').value = proposal.proposal_title || '';
+            document.getElementById('description').value = proposal.description || '';
+            document.getElementById('technicalApproach').value = proposal.technical_approach || '';
+            document.getElementById('dataSources').value = Array.isArray(proposal.data_sources) ? proposal.data_sources.join('\n') : (proposal.data_sources || '');
+            document.getElementById('deployment').value = proposal.deployment || '';
+            document.getElementById('dataGovernance').value = proposal.data_governance || '';
+            document.getElementById('modelGovernance').value = proposal.model_governance || '';
+            document.getElementById('securityMeasures').value = proposal.security_measures || '';
+            
+            // Enable assessment
+            assessButton.disabled = false;
+            hasUnsavedChanges = false;
+        }
+
+        function getProposalFromForm() {
+            const dataSources = document.getElementById('dataSources').value
+                .split('\n')
+                .map(s => s.trim())
+                .filter(s => s.length > 0);
+
+            return {
+                cfp_id: document.getElementById('cfpId').value || null,
+                proposal_title: document.getElementById('proposalTitle').value || null,
+                description: document.getElementById('description').value,
+                technical_approach: document.getElementById('technicalApproach').value || null,
+                data_sources: dataSources.length > 0 ? dataSources : null,
+                deployment: document.getElementById('deployment').value || null,
+                data_governance: document.getElementById('dataGovernance').value || null,
+                model_governance: document.getElementById('modelGovernance').value || null,
+                security_measures: document.getElementById('securityMeasures').value || null
+            };
+        }
+
+        // Risk assessment
+        assessButton.addEventListener('click', assessRisks);
+
+        async function assessRisks() {
+            // Get current form data
+            const proposal = getProposalFromForm();
+            
+            if (!proposal.description.trim()) {
+                showError('Please provide a description for your proposal');
+                return;
+            }
+
+            assessButton.disabled = true;
+            loading.style.display = 'block';
+            resultsContainer.innerHTML = '';
+
+            try {
+                const response = await fetch('http://localhost:5005/api/v1/assess-risks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        proposal: proposal
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                displayResults(result);
+                showSuccess('Risk assessment completed successfully!');
+                hasUnsavedChanges = false;
+                
+            } catch (error) {
+                console.error('Assessment error:', error);
+                showError('Failed to assess risks: ' + error.message);
+            } finally {
+                assessButton.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+
+        // Form button handlers
+        saveButton.addEventListener('click', saveProposal);
+        loadSampleButton.addEventListener('click', loadSampleProposal);
+        clearButton.addEventListener('click', clearForm);
+
+        function saveProposal() {
+            const proposal = getProposalFromForm();
+            const dataStr = JSON.stringify(proposal, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `proposal_${Date.now()}.json`;
+            link.click();
+            
+            showSuccess('Proposal saved successfully!');
+            hasUnsavedChanges = false;
+        }
+
+        function loadSampleProposal() {
+            const sampleProposals = [
+                {
+                    cfp_id: "CFP-001",
+                    proposal_title: "Customer Support Chatbot",
+                    description: "Deploy an AI chatbot using RAG to answer customer questions based on our documentation.",
+                    technical_approach: "Fine-tune GPT-4 on our support tickets, use vector database for retrieval.",
+                    data_sources: ["customer_tickets", "product_docs"],
+                    deployment: "Cloud-hosted API",
+                    data_governance: "PII anonymization, data retention policies",
+                    model_governance: "Version control, performance monitoring",
+                    security_measures: "API authentication, rate limiting"
+                },
+                {
+                    cfp_id: "CFP-002", 
+                    proposal_title: "Secure AI-Powered Fraud Detection System",
+                    description: "Implement a machine learning system to detect fraudulent transactions in real-time using advanced algorithms and comprehensive data analysis.",
+                    technical_approach: "Use XGBoost and neural networks with SHAP for explainability. Implement A/B testing framework for model validation.",
+                    data_sources: ["transaction_history", "user_behavior", "third_party_risk_scores"],
+                    deployment: "Kubernetes with canary deployments",
+                    data_governance: "PII anonymization, 7-year data retention, comprehensive audit logging",
+                    model_governance: "MLflow for versioning, continuous performance monitoring, bias testing",
+                    security_measures: "Input validation, rate limiting, encryption at rest and in transit"
+                }
+            ];
+            
+            const randomProposal = sampleProposals[Math.floor(Math.random() * sampleProposals.length)];
+            loadProposalIntoForm(randomProposal);
+            showSuccess('Sample proposal loaded!');
+        }
+
+        function clearForm() {
+            if (hasUnsavedChanges && !confirm('You have unsaved changes. Are you sure you want to clear the form?')) {
+                return;
+            }
+            
+            document.getElementById('cfpId').value = '';
+            document.getElementById('proposalTitle').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('technicalApproach').value = '';
+            document.getElementById('dataSources').value = '';
+            document.getElementById('deployment').value = '';
+            document.getElementById('dataGovernance').value = '';
+            document.getElementById('modelGovernance').value = '';
+            document.getElementById('securityMeasures').value = '';
+            
+            currentProposal = null;
+            assessButton.disabled = false;
+            hasUnsavedChanges = false;
+            resultsContainer.innerHTML = '<div class="no-results">Fill out the form and click "Assess Risks" to see results</div>';
+            
+            showSuccess('Form cleared!');
+        }
+
+        // Track form changes
+        const formInputs = document.querySelectorAll('#proposalForm input, #proposalForm textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                hasUnsavedChanges = true;
+            });
+        });
+
+        function displayResults(assessment) {
+            const risks = assessment.risks || [];
+            
+            if (risks.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No risks identified for this proposal</div>';
+                return;
+            }
+
+            let html = `<div class="success-message">Assessment completed! Found ${risks.length} risk(s)</div>`;
+            
+            risks.forEach((risk, index) => {
+                html += `
+                    <div class="risk-item">
+                        <div class="risk-header">
+                            <div class="risk-id">${risk.risk_id}</div>
+                            <div class="risk-title">${risk.risk_title}</div>
+                        </div>
+                        <div class="risk-content">
+                            <div class="risk-description">${risk.risk_description}</div>
+                            <div class="risk-explanation">${risk.explanation}</div>
+                            <div class="controls-section">
+                                <div class="controls-title" onclick="toggleControls(${index})">
+                                    <span>Recommended Controls (${risk.controls.length}):</span>
+                                    <span class="controls-toggle">▼</span>
+                                </div>
+                                <div class="controls-list" id="controls-${index}">
+                                    ${risk.controls.map(control => 
+                                        `<div class="control-item">${control.control_id}: ${control.control_title}</div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = html;
+        }
+
+        function showError(message) {
+            resultsContainer.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+
+        function showSuccess(message) {
+            // Create a temporary success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = message;
+            resultsContainer.insertBefore(successDiv, resultsContainer.firstChild);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (successDiv.parentNode) {
+                    successDiv.parentNode.removeChild(successDiv);
+                }
+            }, 3000);
+        }
+
+        function toggleControls(riskIndex) {
+            const controlsList = document.getElementById(`controls-${riskIndex}`);
+            const toggleIcon = controlsList.previousElementSibling.querySelector('.controls-toggle');
+            
+            if (controlsList.classList.contains('collapsed')) {
+                controlsList.classList.remove('collapsed');
+                toggleIcon.classList.remove('collapsed');
+            } else {
+                controlsList.classList.add('collapsed');
+                toggleIcon.classList.add('collapsed');
+            }
+        }
+    </script>
+</body>
+</html>

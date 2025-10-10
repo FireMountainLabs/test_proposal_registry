@@ -1,0 +1,74 @@
+[
+  {
+    "cfp_id": "CFP-004",
+    "title": "AI Innovation Across the Enterprise",
+    "issuing_organization": "OmniCore Enterprises",
+    "summary": "Our company wants to accelerate the use of AI across all divisions to become more competitive and efficient. We are seeking proposals that show how AI can make our teams faster, smarter, and more productive.",
+    "objectives": [
+      "Implement AI in daily operations to reduce manual workload.",
+      "Develop smart systems that improve communication and reporting.",
+      "Identify AI opportunities in departments that have not adopted automation."
+    ],
+    "expected_deliverables": [
+      "Detailed proposal outlining potential AI use cases.",
+      "Prototype or demo showing productivity improvements.",
+      "Simple implementation roadmap for scaling AI across divisions."
+    ],
+    "evaluation_criteria": [
+      "Originality of the idea.",
+      "Ease of understanding for non-technical stakeholders.",
+      "Potential to demonstrate ROI within six months."
+    ],
+    "funding_range_usd": "Up to $150,000",
+    "submission_deadline": "2025-12-10",
+    "contact_email": "futuretech@omnicore.com"
+  },
+  {
+    "cfp_id": "CFP-005",
+    "title": "AI Productivity Jumpstart",
+    "issuing_organization": "NextWave Group",
+    "summary": "We want to use AI to boost productivity and collaboration throughout our organization. Our leadership is interested in quick wins and visible outcomes that highlight AI’s business value.",
+    "objectives": [
+      "Find ways to automate or augment existing business processes using AI.",
+      "Create simple AI assistants or chatbots for internal use.",
+      "Improve visibility and reporting using predictive analytics."
+    ],
+    "expected_deliverables": [
+      "Presentation or proposal describing quick-impact AI use cases.",
+      "Functional prototype or mockup demonstrating the idea.",
+      "Summary of expected cost savings or time reductions."
+    ],
+    "evaluation_criteria": [
+      "Speed to pilot.",
+      "Business impact potential.",
+      "User adoption feasibility."
+    ],
+    "funding_range_usd": "Between $50,000 and $200,000",
+    "submission_deadline": "2025-11-25",
+    "contact_email": "ai_boost@nextwavegroup.com"
+  },
+  {
+    "cfp_id": "CFP-006",
+    "title": "AI Integration for Smarter Workflows",
+    "issuing_organization": "Evergreen Manufacturing",
+    "summary": "We believe AI can make every part of our business run smoother—from supply chain to HR. We’re looking for creative proposals that show how AI can be embedded into our everyday workflows to drive measurable efficiency.",
+    "objectives": [
+      "Develop AI tools that connect data across multiple business systems.",
+      "Use AI for forecasting, scheduling, or employee engagement.",
+      "Build internal awareness of AI through practical demonstration projects."
+    ],
+    "expected_deliverables": [
+      "Proposal detailing use cases and anticipated outcomes.",
+      "Proof of concept (POC) targeting a key operational workflow.",
+      "Plan for scaling successful pilots across the enterprise."
+    ],
+    "evaluation_criteria": [
+      "Feasibility and clarity of implementation.",
+      "Cross-departmental impact.",
+      "Alignment with digital transformation goals."
+    ],
+    "funding_range_usd": "Up to $400,000",
+    "submission_deadline": "2025-12-31",
+    "contact_email": "ai_initiatives@evergreenmfg.com"
+  }
+]

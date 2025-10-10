@@ -1,0 +1,74 @@
+[
+  {
+    "cfp_id": "CFP-007",
+    "title": "Responsible AI Enablement Across the Enterprise",
+    "issuing_organization": "Summit Dynamics",
+    "summary": "We are beginning our journey toward responsible AI adoption. Our goal is to identify practical ways to leverage AI for productivity while ensuring security, transparency, and accountability. We seek partners who can help us establish the foundations for responsible AI use across business functions.",
+    "objectives": [
+      "Map current opportunities for AI integration across business units.",
+      "Develop pilot projects that demonstrate measurable productivity gains.",
+      "Create initial AI governance guidelines for data privacy and risk mitigation."
+    ],
+    "expected_deliverables": [
+      "AI opportunity assessment report by function.",
+      "Pilot use case demonstrating tangible value and risk control.",
+      "Governance playbook draft covering explainability, access, and data use."
+    ],
+    "evaluation_criteria": [
+      "Balance between innovation and responsible practice.",
+      "Feasibility of deployment within existing systems.",
+      "Ability to articulate governance and measurement metrics."
+    ],
+    "funding_range_usd": "Up to $300,000",
+    "submission_deadline": "2025-12-05",
+    "contact_email": "ai_governance@summitdynamics.com"
+  },
+  {
+    "cfp_id": "CFP-008",
+    "title": "AI Transformation with Guardrails",
+    "issuing_organization": "Lighthouse Financial Group",
+    "summary": "We want to apply AI to improve efficiency and customer experience while upholding ethical and regulatory expectations. Proposals should show not only how AI can drive value but also how it will remain transparent, auditable, and aligned with organizational standards.",
+    "objectives": [
+      "Identify high-value AI opportunities that improve internal productivity or client engagement.",
+      "Implement frameworks for monitoring AI outcomes and identifying potential bias.",
+      "Develop training or awareness materials to increase responsible AI literacy among staff."
+    ],
+    "expected_deliverables": [
+      "AI roadmap prioritizing quick-win and high-impact areas.",
+      "Initial metrics for fairness, accuracy, and accountability.",
+      "Pilot system or dashboard illustrating model transparency."
+    ],
+    "evaluation_criteria": [
+      "Maturity of governance approach.",
+      "Demonstrated understanding of compliance and risk management.",
+      "Clarity of measurable success indicators."
+    ],
+    "funding_range_usd": "Between $250,000 and $500,000",
+    "submission_deadline": "2025-12-12",
+    "contact_email": "responsibleai@lighthousegroup.com"
+  },
+  {
+    "cfp_id": "CFP-009",
+    "title": "Operational AI Adoption with Measurable Impact",
+    "issuing_organization": "BlueRidge Energy",
+    "summary": "As part of our digital modernization strategy, we aim to embed AI safely and strategically into operations. We seek proposals that combine business impact with ethical and technical assurance, emphasizing scalability and responsible use.",
+    "objectives": [
+      "Demonstrate operational use cases for AI that increase efficiency or reduce downtime.",
+      "Introduce structured risk management aligned to recognized AI frameworks (e.g., NIST AI RMF).",
+      "Develop documentation to track model lineage, performance, and accountability."
+    ],
+    "expected_deliverables": [
+      "Implementation plan with clear milestones and ownership.",
+      "Proof-of-concept system with performance metrics and monitoring.",
+      "Risk register identifying AI-specific risks and mitigations."
+    ],
+    "evaluation_criteria": [
+      "Alignment with responsible AI standards.",
+      "Ability to demonstrate tangible ROI with governance.",
+      "Clarity in reporting and model assurance."
+    ],
+    "funding_range_usd": "Up to $600,000",
+    "submission_deadline": "2025-12-22",
+    "contact_email": "ai_innovation@blueridgeenergy.com"
+  }
+]

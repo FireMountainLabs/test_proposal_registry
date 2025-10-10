@@ -1,0 +1,11 @@
+{
+  "cfp_id": "CFP-001",
+  "proposal_title": "Secure AI-Powered Fraud Detection System",
+  "description": "Build a real-time fraud detection system using ensemble ML models with explainability.",
+  "technical_approach": "Ensemble of XGBoost and neural networks, SHAP for explainability, A/B testing framework.",
+  "data_sources": ["transaction_history", "user_behavior", "third_party_risk_scores"],
+  "data_governance": "PII anonymization, data retention policies, audit logging",
+  "model_governance": "Model versioning, performance monitoring, bias testing",
+  "deployment": "Kubernetes cluster with canary deployments",
+  "security_measures": "Input validation, rate limiting, encrypted data at rest and in transit"
+}

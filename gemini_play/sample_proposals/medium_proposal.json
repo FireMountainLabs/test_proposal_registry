@@ -1,0 +1,8 @@
+{
+  "cfp_id": "CFP-002",
+  "proposal_title": "Customer Support Chatbot",
+  "description": "Deploy an AI chatbot using RAG to answer customer questions based on our documentation.",
+  "technical_approach": "Fine-tune GPT-4 on our support tickets, use vector database for retrieval.",
+  "data_sources": ["customer_tickets", "product_docs"],
+  "deployment": "Cloud-hosted API"
+}

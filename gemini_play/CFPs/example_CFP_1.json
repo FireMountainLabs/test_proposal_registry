@@ -1,0 +1,75 @@
+[
+    {
+      "cfp_id": "CFP-001",
+      "title": "AI for Enterprise Productivity Enhancement",
+      "issuing_organization": "Acme Global Holdings",
+      "summary": "We want to leverage AI across all business units to increase productivity and streamline operations. The organization is eager to use artificial intelligence to automate manual tasks, improve decision-making, and help employees work smarter.",
+      "objectives": [
+        "Identify opportunities to apply AI across departments such as HR, Finance, and Operations.",
+        "Develop AI solutions that reduce time spent on repetitive work.",
+        "Demonstrate measurable productivity improvements across teams."
+      ],
+      "expected_deliverables": [
+        "Concept proposals with examples of AI applications per business unit.",
+        "Proof of concept for one cross-functional AI automation use case.",
+        "Preliminary roadmap for organization-wide AI adoption."
+      ],
+      "evaluation_criteria": [
+        "Creativity in identifying use cases.",
+        "Ease of deployment and integration.",
+        "Expected ROI and productivity gains."
+      ],
+      "funding_range_usd": "Up to $250,000 per proposal",
+      "submission_deadline": "2025-11-30",
+      "contact_email": "innovation@acmeholdings.com"
+    },
+    {
+      "cfp_id": "CFP-002",
+      "title": "AI Transformation Initiative: From Data to Insights",
+      "issuing_organization": "BrightFuture Industries",
+      "summary": "We believe AI can transform how we do business. We’re looking for partners who can help us bring AI into every aspect of our organization, from customer support to logistics to leadership reporting.",
+      "objectives": [
+        "Integrate AI into existing business processes to improve efficiency and insight generation.",
+        "Develop dashboards and analytics tools powered by machine learning.",
+        "Promote a culture of data-driven decision making."
+      ],
+      "expected_deliverables": [
+        "End-to-end AI prototype showing measurable value.",
+        "Training materials to help employees adopt AI tools.",
+        "Recommendations for scaling AI organization-wide."
+      ],
+      "evaluation_criteria": [
+        "Innovation potential.",
+        "Alignment with company vision for digital transformation.",
+        "Clarity of implementation plan."
+      ],
+      "funding_range_usd": "Between $100,000 and $500,000",
+      "submission_deadline": "2025-12-15",
+      "contact_email": "ai_initiative@brightfuture.com"
+    },
+    {
+      "cfp_id": "CFP-003",
+      "title": "AI Everywhere Program",
+      "issuing_organization": "NorthStar Logistics",
+      "summary": "Our leadership team is excited about AI and wants to explore how it can increase productivity across the company. We are open to any ideas that demonstrate how AI can improve performance, reduce costs, or help employees do their jobs better.",
+      "objectives": [
+        "Explore AI solutions for warehouse optimization, routing, and workforce management.",
+        "Use AI to identify efficiency gaps and predict operational risks.",
+        "Encourage organization-wide adoption of AI tools and processes."
+      ],
+      "expected_deliverables": [
+        "Proposal with clear AI use cases and measurable benefits.",
+        "Pilot demonstration within one business function.",
+        "High-level roadmap for AI scaling."
+      ],
+      "evaluation_criteria": [
+        "Practicality and scalability.",
+        "Impact on productivity and efficiency.",
+        "Ease of implementation in existing systems."
+      ],
+      "funding_range_usd": "Up to $300,000",
+      "submission_deadline": "2025-12-20",
+      "contact_email": "ai_proposals@northstarlogistics.com"
+    }
+  ]
+  
